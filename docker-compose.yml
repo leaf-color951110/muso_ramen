@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  php:
+     build: ./php
+     image: php82
+     volumes:
+       - ./html:/var/www/html
+     depends_on:
+       - mysql
+     restart: always
+     ports:
+      - 3111:80
+
+  mysql:
+    ports:
+      - 3121:3306
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: muso_ramen_wp
+      MYSQL_ROOT_PASSWORD: En2aqskS
+      MYSQL_PASSWORD: root
+    restart: always
+    volumes:
+      - muso_ramen_data:/var/lib/mysql
+
+  
+volumes:
+  muso_ramen_data:
+
+
+#wp_pass:vk(2bJqWF#mjYC3Nq8
